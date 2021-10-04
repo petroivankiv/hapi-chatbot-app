@@ -1,20 +1,18 @@
-import * as Hapi from '@hapi/hapi';
+import Logger from './helper/logger';
+import Server from './server';
 
 const init = async () => {
-
-  const server = Hapi.server({
-    port: 8081,
-    host: 'localhost'
-  });
-
-  await server.start();
-  console.log('Server running on %s', server.info.uri);
+  await Server.start();
 };
 
-process.on('unhandledRejection', (err) => {
+// listen on SIGINT signal and gracefully stop the server
+process.on('SIGINT', () => {
+  Logger.info('Stopping hapi server');
 
-  console.log(err);
-  process.exit(1);
+  Server.stop().then(err => {
+    Logger.info(`Server stopped`);
+    process.exit(err ? 1 : 0);
+  });
 });
 
 init();

@@ -4,6 +4,12 @@
   "description": "Chat bot example",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run nodemon:build",
+    "start": "node dist/src/index.js",
+    "docker:logs": "docker-compose logs",
+    "docker:ps": "docker-compose ps",
+    "docker:start": "docker-compose up",
+    "docker:stop": "docker-compose -f docker-compose.yml down -v --remove-orphans",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
     "clean": "gts clean",
@@ -32,13 +38,20 @@
     ]
   },
   "dependencies": {
+    "@hapi/boom": "^9.1.4",
     "@hapi/hapi": "^20.2.0",
-    "dotenv": "^10.0.0"
+    "@hapi/inert": "^6.0.4",
+    "@hapi/joi": "^17.1.1",
+    "dotenv": "^10.0.0",
+    "nedb": "^1.8.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
     "@types/hapi__hapi": "^20.0.9",
+    "@types/hapi__joi": "^17.1.7",
+    "@types/nedb": "^1.8.12",
     "@types/node": "^14.11.2",
     "gts": "^3.1.0",
     "husky": "^7.0.2",
