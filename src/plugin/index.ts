@@ -1,9 +1,12 @@
 import Config from '../config';
 import * as Hapi from '@hapi/hapi';
 import Logger from '../helper/logger';
+import * as Inert from '@hapi/inert';
+import * as Vision from '@hapi/vision';
+import * as HapiSwagger from 'hapi-swagger';
 
 export default class Plugins {
-  public static async status(server: Hapi.Server): Promise<Error | any> {
+  static async status(server: Hapi.Server): Promise<Error | any> {
     try {
       Logger.info('Plugins - Registering status-monitor');
 
@@ -18,16 +21,16 @@ export default class Plugins {
     }
   }
 
-  public static async swagger(server: Hapi.Server): Promise<Error | any> {
+  static async swagger(server: Hapi.Server): Promise<Error | any> {
     try {
       Logger.info('Plugins - Registering swagger-ui');
 
       await Plugins.register(server, [
-        require('@hapi/vision'),
-        require('@hapi/inert'),
+        Inert,
+        Vision,
         {
           options: Config.swagger.options,
-          plugin: require('hapi-swagger'),
+          plugin: HapiSwagger,
         },
       ]);
     } catch (error) {
@@ -37,7 +40,7 @@ export default class Plugins {
     }
   }
 
-  public static async registerAll(server: Hapi.Server): Promise<Error | any> {
+  static async registerAll(server: Hapi.Server): Promise<Error | any> {
     if (process.env.NODE_ENV === 'development') {
       await Plugins.status(server);
       await Plugins.swagger(server);

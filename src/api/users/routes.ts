@@ -5,7 +5,7 @@ import Logger from '../../helper/logger';
 import IRoute from '../../helper/route';
 
 export default class UserRoutes implements IRoute {
-  public async register(server: Hapi.Server): Promise<any> {
+  async register(server: Hapi.Server): Promise<any> {
     return new Promise(resolve => {
       const controller = new UserController('USER_ID');
 

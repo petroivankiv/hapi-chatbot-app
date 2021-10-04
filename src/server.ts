@@ -7,7 +7,7 @@ import * as DotEnv from 'dotenv';
 export default class Server {
   private static _instance: Hapi.Server;
 
-  public static async start(): Promise<Hapi.Server> {
+  static async start(): Promise<Hapi.Server> {
     try {
       DotEnv.config({
         path: `${process.cwd()}/.env`,
@@ -36,13 +36,13 @@ export default class Server {
     }
   }
 
-  public static stop(): Promise<Error | void> {
+  static stop(): Promise<Error | void> {
     Logger.info(`Server - Stopping execution`);
 
     return Server._instance.stop();
   }
 
-  public static async recycle(): Promise<Hapi.Server> {
+  static async recycle(): Promise<Hapi.Server> {
     Logger.info(`Server - Recycling instance`);
 
     await Server.stop();
@@ -50,11 +50,11 @@ export default class Server {
     return await Server.start();
   }
 
-  public static instance(): Hapi.Server {
+  static instance(): Hapi.Server {
     return Server._instance;
   }
 
-  public static async inject(
+  static async inject(
     options: string | Hapi.ServerInjectOptions
   ): Promise<Hapi.ServerInjectResponse> {
     return await Server._instance.inject(options);
