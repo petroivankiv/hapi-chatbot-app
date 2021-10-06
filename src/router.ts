@@ -22,6 +22,14 @@ export default class Router {
 
     server.route({
       method: 'GET',
+      path: '/health',
+      handler: function (request, h) {
+        return 'Ok';
+      }
+    });
+
+    server.route({
+      method: 'GET',
       path: '/files/{param*}',
       handler: {
         directory: {

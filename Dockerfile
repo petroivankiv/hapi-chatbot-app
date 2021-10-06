@@ -1,20 +1,21 @@
-FROM node:8.1.2-alpine
+FROM node:14-alpine
 
 MAINTAINER PI
 
-RUN rm -rf PROJECT_DIR/node_modules
+ARG PROJECT_DIR=/usr/app/
 
-ADD ./src PROJECT_DIR
-ADD ./logs PROJECT_DIR
-ADD ./data PROJECT_DIR
+RUN rm -rf $PROJECT_DIR/node_modules
 
-ADD ./package.json PROJECT_DIR
-ADD ./package-lock.json PROJECT_DIR
-ADD ./tsconfig.json PROJECT_DIR
+ADD ./src $PROJECT_DIR
+ADD ./data $PROJECT_DIR
 
-WORKDIR PROJECT_DIR
+ADD ./package.json $PROJECT_DIR
+ADD ./package-lock.json $PROJECT_DIR
+ADD ./tsconfig.json $PROJECT_DIR
 
-EXPOSE PORT
+WORKDIR $PROJECT_DIR
+
+EXPOSE 8080
 
 RUN npm prune
 RUN npm install

@@ -3,7 +3,7 @@ services:
   web:
     container_name: web-api
     build: .
-    command: npm run nodemon:start
+    command: npm run start
     volumes:
       - .:/usr/app/
     environment:
@@ -13,4 +13,4 @@ services:
       - NODE_ENV=development
       - LOG_LEVEL=debug
     ports:
-      - "localhost:8080:8080"
+      - "8080:8080"

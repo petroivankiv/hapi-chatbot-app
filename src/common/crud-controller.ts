@@ -10,7 +10,7 @@ export default class CrudController<T> {
     private crudResolver: CrudResolver<T>
   ) {}
 
-  public create = async (
+  create = async (
     request: Hapi.Request,
     toolkit: Hapi.ResponseToolkit
   ): Promise<any> => {
@@ -33,7 +33,7 @@ export default class CrudController<T> {
     }
   };
 
-  public updateById = async (
+  updateById = async (
     request: Hapi.Request,
     toolkit: Hapi.ResponseToolkit
   ): Promise<any> => {
@@ -69,7 +69,7 @@ export default class CrudController<T> {
     }
   };
 
-  public getById = async (
+  getById = async (
     request: Hapi.Request,
     toolkit: Hapi.ResponseToolkit
   ): Promise<any> => {
@@ -102,7 +102,7 @@ export default class CrudController<T> {
     }
   };
 
-  public getAll = async (
+  getAll = async (
     request: Hapi.Request,
     toolkit: Hapi.ResponseToolkit
   ): Promise<any> => {
@@ -125,7 +125,7 @@ export default class CrudController<T> {
     }
   };
 
-  public deleteById = async (
+  deleteById = async (
     request: Hapi.Request,
     toolkit: Hapi.ResponseToolkit
   ): Promise<any> => {
