@@ -1,18 +1,37 @@
+import * as Hapi from '@hapi/hapi'
 import Logger from './helper/logger';
-import Server from './server';
+import Plugin from "./plugin";
+import Router from "./router";
 
-const init = async () => {
-  await Server.start();
-};
+const server: Hapi.Server = Hapi.server({
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || 'localhost',
+})
 
-// listen on SIGINT signal and gracefully stop the server
-process.on('SIGINT', () => {
-  Logger.info('Stopping hapi server');
+export async function start(): Promise<Hapi.Server> {
+  server.validator(require('@hapi/joi'));
 
-  Server.stop().then(err => {
-    Logger.info(`Server stopped`);
-    process.exit(err ? 1 : 0);
-  });
-});
+  await Plugin.registerAll(server);
+  await Router.loadRoutes(server);
 
-init();
+  await server.start()
+  return server
+}
+
+process.on('unhandledRejection', async (err) => {
+  await server.app.prisma.$disconnect()
+
+  Logger.info(`Server - unhandledRejection: ${err}`);
+  process.exit(1)
+})
+
+start()
+  .then((server) => {
+    Logger.info(`
+      🚀 Server ready at: ${server.info.uri}
+      ⭐️ See sample requests: http://pris.ly/e/ts/rest-hapi#3-using-the-rest-api
+    `)
+  })
+  .catch((error) => {
+    Logger.info(`Server - There was something wrong: ${error}`);
+  })
