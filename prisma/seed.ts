@@ -1,39 +1,36 @@
-// @ts-ignore
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
+import * as fs from 'fs';
 
-const prisma = new PrismaClient()
-
-const userData: Prisma.UserCreateInput[] = [
-  {
-    name: 'Alice',
-    email: 'alice@prisma.io',
-  },
-  {
-    name: 'Nilu',
-    email: 'nilu@prisma.io',
-  },
-  {
-    name: 'Mahmoud',
-    email: 'mahmoud@prisma.io',
-  },
-]
+const prisma: any = new PrismaClient();
 
 async function main() {
-  console.log(`Start seeding ...`)
-  for (const u of userData) {
-    const user = await prisma.user.create({
-      data: u,
-    })
-    console.log(`Created user with id: ${user.id}`)
+  console.log(`Start seeding ...`);
+
+  const files = fs.readdirSync('./prisma/seeds');
+  const tableNames = files.map(file => file.split('.').shift());
+
+  for (const tableName of tableNames) {
+    const records = JSON.parse(fs.readFileSync('./prisma/seeds/' + tableName + '.json', 'utf-8'));
+
+    for (const record of records) {
+      await createRecord(tableName as string, record);
+    }
   }
-  console.log(`Seeding finished.`)
+
+  console.log(`Seeding finished.`);
+}
+
+async function createRecord(tableName: string, data: any) {
+  return await prisma[tableName].create({
+    data
+  });
 }
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   })
