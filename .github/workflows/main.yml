@@ -19,4 +19,4 @@ jobs:
           docker_build_args: |
             NODE_ENV
         env:
-          NODE_ENV: production
+          NODE_ENV: development

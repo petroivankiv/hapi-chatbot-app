@@ -7,6 +7,7 @@ ARG PROJECT_DIR=/usr/app/
 RUN rm -rf $PROJECT_DIR/node_modules
 
 ADD ./src $PROJECT_DIR
+ADD ./prisma $PROJECT_DIR
 
 ADD ./package.json $PROJECT_DIR
 ADD ./package-lock.json $PROJECT_DIR
@@ -14,9 +15,9 @@ ADD ./tsconfig.json $PROJECT_DIR
 
 WORKDIR $PROJECT_DIR
 
-EXPOSE $PORT
+# EXPOSE $PORT
 
 RUN npm prune
 RUN npm install
 
-CMD ["npm", 'run', "start"]
+CMD ["npm", "start"]
