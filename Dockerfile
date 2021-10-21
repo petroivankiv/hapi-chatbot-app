@@ -7,7 +7,6 @@ ARG PROJECT_DIR=/usr/app/
 RUN rm -rf $PROJECT_DIR/node_modules
 
 ADD ./src $PROJECT_DIR
-ADD ./data $PROJECT_DIR
 
 ADD ./package.json $PROJECT_DIR
 ADD ./package-lock.json $PROJECT_DIR
