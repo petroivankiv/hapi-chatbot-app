@@ -19,3 +19,5 @@ EXPOSE 8080
 
 RUN npm prune
 RUN npm install
+
+CMD ["npm", "start"]
