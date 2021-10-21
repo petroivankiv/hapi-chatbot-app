@@ -14,9 +14,9 @@ ADD ./tsconfig.json $PROJECT_DIR
 
 WORKDIR $PROJECT_DIR
 
-EXPOSE 8080
+EXPOSE $PORT
 
 RUN npm prune
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", 'run', "start"]
