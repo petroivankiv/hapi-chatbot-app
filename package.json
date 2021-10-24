@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Hapi chat bot example",
   "main": "index.js",
-  "engines": { "node": "16.2.0" },
+  "engines": {
+    "node": "16.2.0"
+  },
   "scripts": {
     "dev": "ts-node src/index.ts",
     "dev:build": "npm run nodemon:build",
@@ -20,7 +22,6 @@
     "compile": "tsc",
     "fix": "gts fix",
     "nodemon:build": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run lint",
     "db:seed": "npx prisma db seed",
