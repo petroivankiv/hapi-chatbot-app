@@ -1,8 +1,9 @@
 {
-  "name": "chatbotapp",
+  "name": "hapi-chatbot-api",
   "version": "1.0.0",
-  "description": "Chat bot example",
+  "description": "Hapi chat bot example",
   "main": "index.js",
+  "engines": { "node": "16.2.0" },
   "scripts": {
     "dev": "ts-node src/index.ts",
     "dev:build": "npm run nodemon:build",
@@ -19,9 +20,9 @@
     "compile": "tsc",
     "fix": "gts fix",
     "nodemon:build": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "prepare": "npm.cmd run compile",
-    "pretest": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint",
     "db:seed": "npx prisma db seed",
     "db:reset": "npx prisma migrate reset"
   },
