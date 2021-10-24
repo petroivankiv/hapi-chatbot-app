@@ -14,4 +14,4 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "hapi-chatbot-api" #Must be unique in Heroku
-          heroku_email: "petro.ivankiv88@gmail.com"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
