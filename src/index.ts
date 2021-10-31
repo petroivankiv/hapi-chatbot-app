@@ -6,6 +6,16 @@ import Router from "./router";
 const server: Hapi.Server = Hapi.server({
   port: process.env.PORT || 3000,
   host: process.env.HOST || '0.0.0.0',
+  routes: {
+    cors: {
+      origin: ['*'], // an array of origins or 'ignore'
+      headers: ['Authorization'], // an array of strings - 'Access-Control-Allow-Headers'
+      exposedHeaders: ['Accept'], // an array of exposed headers - 'Access-Control-Expose-Headers',
+      additionalExposedHeaders: ['Accept'], // an array of additional exposed headers
+      maxAge: 60,
+      credentials: true // boolean - 'Access-Control-Allow-Credentials'
+    }
+  }
 })
 
 export async function start(): Promise<Hapi.Server> {

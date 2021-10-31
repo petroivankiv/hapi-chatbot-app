@@ -4,12 +4,13 @@ import prisma from "./prisma";
 import statusPlugin from "./status";
 import swaggerPlugin from "./swagger";
 import users from '../api/users/plugin';
+import dialogFlow from '../api/dialog-flow/plugin';
 
 export default class Plugins {
   static async registerAll(server: Hapi.Server): Promise<Error | any> {
     Logger.debug('Plugins registering...');
 
-    await server.register([prisma, users]);
+    await server.register([prisma, users, dialogFlow]);
 
     if (process.env.NODE_ENV === 'development') {
       await server.register(statusPlugin);
