@@ -1,4 +1,6 @@
 import * as Hapi from '@hapi/hapi'
+import * as Joi from 'joi';
+
 import Logger from './helper/logger';
 import Plugin from "./plugin";
 import Router from "./router";
@@ -19,7 +21,7 @@ const server: Hapi.Server = Hapi.server({
 })
 
 export async function start(): Promise<Hapi.Server> {
-  server.validator(require('@hapi/joi'));
+  server.validator(Joi);
 
   await Plugin.registerAll(server);
   await Router.loadRoutes(server);

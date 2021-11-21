@@ -1,6 +1,6 @@
 import * as Hapi from '@hapi/hapi';
 import DialogFlowController from './controller';
-// import validate from './validate';
+import validate from './validate';
 import IRoute from '../../helper/route';
 
 export default class DialogFlowRoutes implements IRoute {
@@ -14,7 +14,7 @@ export default class DialogFlowRoutes implements IRoute {
           path: '/api/text-query',
           options: {
             handler: controller.textQuery,
-            // validate: validate.textQuery,
+            validate: validate.textQuery,
             description: 'Method that handles text query.',
             tags: ['api', 'dialog-flow'],
             auth: false,
@@ -25,7 +25,7 @@ export default class DialogFlowRoutes implements IRoute {
           path: '/api/event-query',
           options: {
             handler: controller.eventQuery,
-            // validate: validate.eventQuery,
+            validate: validate.eventQuery,
             description: 'Method that handles event query.',
             tags: ['api', 'dialog-flow'],
             auth: false,

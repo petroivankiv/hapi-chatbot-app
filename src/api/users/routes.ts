@@ -1,6 +1,6 @@
 import * as Hapi from '@hapi/hapi';
 import UserController from './controller';
-// import validate from './validate';
+import validate from './validate';
 import IRoute from '../../helper/route';
 
 export default class UserRoutes implements IRoute {
@@ -14,9 +14,9 @@ export default class UserRoutes implements IRoute {
           path: '/signup',
           options: {
             handler: controller.signup,
-            // validate: validate.signup,
+            validate: validate.signup,
             description: 'Method that creates a new user.',
-            tags: ['api', 'signup'],
+            tags: ['api', 'users'],
             auth: false,
           },
         },
