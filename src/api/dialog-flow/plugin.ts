@@ -1,7 +1,7 @@
 import * as Hapi from '@hapi/hapi'
 import DialogFlowRoutes from './routes';
 
-const usersPlugin = {
+const dialogFlowPlugin = {
   name: 'app/dialog-flow',
   dependencies: ['prisma'],
   register: async function (server: Hapi.Server) {
@@ -9,4 +9,4 @@ const usersPlugin = {
   },
 }
 
-export default usersPlugin
+export default dialogFlowPlugin
