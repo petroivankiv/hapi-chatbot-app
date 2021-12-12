@@ -1,12 +1,27 @@
 import * as Hapi from '@hapi/hapi';
 import * as Boom from '@hapi/boom';
-const { struct } = require('pb-util');
 import createResponse from '../../helper/response';
+
+const { struct } = require('pb-util');
 const dialogflow = require('dialogflow');
 
+const {
+  GOOGLE_PROJECT_ID,
+  GOOGLE_CLIENT_EMAIL,
+  GOOGLE_PRIVATE_KEY,
+  DIALOG_FLOW_SESSION_ID,
+  DIALOG_FLOW_SESSION_LANG_CODE
+} = process.env;
+
+const projectId = GOOGLE_PROJECT_ID;
+const credentials = {
+  client_email: GOOGLE_CLIENT_EMAIL,
+  private_key: GOOGLE_PRIVATE_KEY,
+};
+
 // Create a new session
-const sessionClient = new dialogflow.SessionsClient();
-const sessionPath = sessionClient.sessionPath(process.env.GOOGLE_PROJECT_ID, process.env.DIALOG_FLOW_SESSION_ID);
+const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
+const sessionPath = sessionClient.sessionPath(GOOGLE_PROJECT_ID, DIALOG_FLOW_SESSION_ID);
 
 export default class DialogFlowController {
   constructor() {}
@@ -21,7 +36,7 @@ export default class DialogFlowController {
       queryInput: {
         text: {
           text: text,
-          languageCode: process.env.DIALOG_FLOW_SESSION_LANG_CODE,
+          languageCode: DIALOG_FLOW_SESSION_LANG_CODE,
         },
       },
     };
@@ -57,7 +72,7 @@ export default class DialogFlowController {
         event: {
           name: event,
           parameters: struct.encode(parameters), //Dialogflow's v2 API uses gRPC. You'll need a jsonToStructProto method to convert your JavaScript object to a proto struct.
-          languageCode: process.env.DIALOG_FLOW_SESSION_LANG_CODE,
+          languageCode: DIALOG_FLOW_SESSION_LANG_CODE,
         },
       }
     };

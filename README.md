@@ -11,6 +11,11 @@ echo %GOOGLE_APPLICATION_CREDENTIALS%
 
 ```
 
+### Setup Google Cloud auth using credentials
+- Download service account key
+- Extract client email and private key
+- Use for google api
+
 ### 1. Download example and install dependencies
 
 Download this example:
