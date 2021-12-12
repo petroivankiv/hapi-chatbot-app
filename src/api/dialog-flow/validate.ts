@@ -8,7 +8,7 @@ export default {
   },
   eventQuery: {
     payload: {
-      text: Joi.string(),
+      event: Joi.string(),
     },
   },
 };

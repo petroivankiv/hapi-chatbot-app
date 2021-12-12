@@ -1,5 +1,6 @@
 import * as Hapi from '@hapi/hapi';
 import * as Boom from '@hapi/boom';
+const { struct } = require('pb-util');
 import createResponse from '../../helper/response';
 const dialogflow = require('dialogflow');
 
@@ -28,10 +29,7 @@ export default class DialogFlowController {
     try {
       // Send request and log result
       const responses = await sessionClient.detectIntent(dialogFlowRequest);
-      console.log('Detected intent');
       const result = responses[0].queryResult;
-      console.log(`  Query: ${result.queryText}`);
-      console.log(`  Response: ${result.fulfillmentText}`);
 
       if (result.intent) {
         console.log(`  Intent: ${result.intent.displayName}`);
@@ -41,6 +39,7 @@ export default class DialogFlowController {
 
       return h.response(createResponse(request, { value: result }));
     } catch (err: any) {
+      console.log('error !!!!!!', err);
       return h.response(createResponse(request, { boom: Boom.badImplementation(err) }));
     }
   }
@@ -50,11 +49,26 @@ export default class DialogFlowController {
     h: Hapi.ResponseToolkit,
   ) {
     const { prisma } = request.server.app;
-    const { text } = request.payload as any;
+    const { event, parameters = {foo: 'bar'} } = request.payload as any;
+
+    const dialogFlowRequest = {
+      session: sessionPath,
+      queryInput: {
+        event: {
+          name: event,
+          parameters: struct.encode(parameters), //Dialogflow's v2 API uses gRPC. You'll need a jsonToStructProto method to convert your JavaScript object to a proto struct.
+          languageCode: process.env.DIALOG_FLOW_SESSION_LANG_CODE,
+        },
+      }
+    };
 
     try {
-      return h.response(createResponse(request, { value: { res: text || 'Event query' } }));
+      const responses = await sessionClient.detectIntent(dialogFlowRequest);
+      const result = responses[0].queryResult;
+
+      return h.response(createResponse(request, { value: result }));
     } catch (err: any) {
+      console.log('error !!!!!!', err);
       return h.response(createResponse(request, { boom: Boom.badImplementation(err) }));
     }
   }

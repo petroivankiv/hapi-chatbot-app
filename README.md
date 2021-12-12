@@ -4,6 +4,13 @@ This example shows how to implement a **REST API** using [hapi](https://hapi.dev
 
 ## Getting started
 
+### Setup Google Cloud auth to get resources
+```
+set GOOGLE_APPLICATION_CREDENTIALS=./path_to_key
+echo %GOOGLE_APPLICATION_CREDENTIALS%
+
+```
+
 ### 1. Download example and install dependencies
 
 Download this example:
