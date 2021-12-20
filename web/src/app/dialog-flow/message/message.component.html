@@ -1,1 +1,8 @@
-<p>message works!</p>
+<mat-list-item class="message" [class.reverse]="!message?.author">
+  <mat-icon [class.icon-right]="!message?.author" mat-list-icon>person</mat-icon>
+  <div mat-line>
+    <span class="name">{{message?.author}}</span>
+    <span class="time">{{message?.time | date}}</span>
+  </div>
+  <div [class.text-left]="!message?.author" mat-line>{{ message?.text }}</div>
+</mat-list-item>

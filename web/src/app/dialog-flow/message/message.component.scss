@@ -1,0 +1,28 @@
+.message {
+  display: flex;
+  flex-direction: row;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .time {
+    font-size: 12px;
+  }
+
+  .icon-right {
+    order: 3;
+    margin-left: 15px;
+  }
+
+  .text-left {
+    order: 1;
+    align-self: end;
+  }
+}

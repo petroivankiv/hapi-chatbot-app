@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DialogFlowService } from '../dialog-flow.service';
-
-export interface Message {
-  author: string;
-  time: Date;
-  text: string;
-}
+import { Message } from '../types/message.interface';
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +16,7 @@ export class ChatComponent implements OnInit {
       text: 'Hello'
     },
     {
-      author: 'Recipes',
+      author: '',
       time: new Date('1/17/16'),
       text: 'Hi'
     },
