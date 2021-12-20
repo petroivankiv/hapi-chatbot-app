@@ -1,0 +1,37 @@
+.chat {
+  position: absolute;
+  width: 400px;
+  max-height: 700px;
+  overflow: auto;
+  bottom: 30px;
+  right: 30px;
+
+  .minimized {
+    display: none;
+  }
+
+  .chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .chat_minimize {
+      cursor: pointer;
+    }
+  }
+
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .time {
+    font-size: 12px;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+}
