@@ -6,14 +6,28 @@
     flex-direction: row-reverse;
   }
 
-  .name {
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 10px;
-  }
+  .name-wrapper {
+    display: inline-flex;
 
-  .time {
-    font-size: 12px;
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+
+      &.name-reverse {
+        align-self: end;
+        margin-right: 0;
+        margin-left: 10px;
+      }
+    }
+
+    .time {
+      font-size: 12px;
+    }
   }
 
   .icon-right {

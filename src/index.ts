@@ -11,7 +11,7 @@ const server: Hapi.Server = Hapi.server({
   routes: {
     cors: {
       origin: ['*'], // an array of origins or 'ignore'
-      headers: ['Authorization'], // an array of strings - 'Access-Control-Allow-Headers'
+      headers: ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language"],
       exposedHeaders: ['Accept'], // an array of exposed headers - 'Access-Control-Expose-Headers',
       additionalExposedHeaders: ['Accept'], // an array of additional exposed headers
       maxAge: 60,

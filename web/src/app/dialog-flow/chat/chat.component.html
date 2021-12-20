@@ -13,10 +13,10 @@
   <mat-card-subtitle>Conversation with a Bot</mat-card-subtitle>
   <mat-card-content [class.minimized]="minimized">
     <mat-list>
-      <app-message *ngFor="let message of messages" [message]="message"></app-message>
+      <app-message *ngFor="let message of messages$ | async" [message]="message"></app-message>
     </mat-list>
     <mat-form-field class="form-input" appearance="outline">
-      <mat-label>Outline form field</mat-label>
+      <mat-label>Type your question here...</mat-label>
       <input (keydown.enter)="onEnter()" id="name" type="text" [formControl]="name" matInput placeholder="Placeholder">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Ask a question</mat-hint>

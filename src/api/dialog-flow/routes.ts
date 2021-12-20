@@ -13,6 +13,7 @@ export default class DialogFlowRoutes implements IRoute {
           method: 'POST',
           path: '/api/text-query',
           options: {
+            cors: true,
             handler: controller.textQuery,
             validate: validate.textQuery,
             description: 'Method that handles text query.',

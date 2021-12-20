@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+
 import { DialogFlowService } from '../dialog-flow.service';
 import { Message } from '../types/message.interface';
 
@@ -9,37 +11,22 @@ import { Message } from '../types/message.interface';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  messages: Message[] = [
-    {
-      author: 'Photos',
-      time: new Date('1/1/16'),
-      text: 'Hello'
-    },
-    {
-      author: '',
-      time: new Date('1/17/16'),
-      text: 'Hi'
-    },
-    {
-      author: 'Work',
-      time: new Date('1/28/16'),
-      text: 'Good day'
-    },
-  ];
+  messages$: Observable<Message[]>;
 
   minimized?: boolean;
   name = new FormControl('');
 
-  constructor(private service: DialogFlowService) { }
+  constructor(private service: DialogFlowService) {
+    this.messages$ = service.messages;
+  }
 
   ngOnInit(): void {
+    this.service.getTextQuery('Welcome').subscribe();
   }
 
   onEnter() {
-    this.service.getTextQuery(this.name.value).subscribe(message => {
-      console.log(message);
-    });
-
+    this.service.addMessageFromUser(this.name.value);
+    this.service.getTextQuery(this.name.value).subscribe();
     this.name.setValue('');
   }
 
