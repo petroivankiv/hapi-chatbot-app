@@ -9,7 +9,8 @@ import { QueryTextResponse } from './types/response.interface';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-  })
+  }),
+  withCredentials: true
 };
 
 @Injectable({

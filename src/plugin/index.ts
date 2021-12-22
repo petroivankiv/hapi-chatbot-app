@@ -3,6 +3,7 @@ import Logger from '../helper/logger';
 import prisma from "./prisma";
 import statusPlugin from "./status";
 import swaggerPlugin from "./swagger";
+import sessionsPlugin from "./sessions";
 import users from '../api/users/plugin';
 import dialogFlow from '../api/dialog-flow/plugin';
 
@@ -11,6 +12,7 @@ export default class Plugins {
     Logger.debug('Plugins registering...');
 
     await server.register([prisma, users, dialogFlow]);
+    await server.register(sessionsPlugin);
 
     if (process.env.NODE_ENV === 'development') {
       await server.register(statusPlugin);
