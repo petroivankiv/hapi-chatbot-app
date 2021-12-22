@@ -30,13 +30,26 @@
     }
   }
 
-  .icon-right {
-    order: 3;
-    margin-left: 15px;
+  .icon {
+    align-self: start;
+
+    &.icon-right {
+      order: 3;
+      margin-left: 15px;
+    }
   }
 
-  .text-left {
-    order: 1;
-    align-self: end;
+  .text {
+    background-color: #D6EFFF;
+    padding: 6px;
+    width: 60%;
+    white-space: pre-wrap;
+    border-radius: 6px;
+
+    &.text-bot {
+      background-color: #F9F9F9;
+      order: 1;
+      align-self: end;
+    }
   }
 }

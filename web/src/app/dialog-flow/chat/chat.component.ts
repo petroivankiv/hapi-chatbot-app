@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,9 @@ import { Message } from '../types/message.interface';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('nameInput') nameInput?: ElementRef;
+
   messages$: Observable<Message[]>;
 
   minimized?: boolean;
@@ -21,7 +23,11 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getTextQuery('Welcome').subscribe();
+    this.service.getTextQuery('Hi').subscribe();
+  }
+
+  ngAfterViewChecked() {
+    this.nameInput?.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   onEnter() {

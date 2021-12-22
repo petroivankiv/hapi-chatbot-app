@@ -1,5 +1,7 @@
 <mat-list-item class="message" [class.reverse]="message?.isBot">
   <mat-icon
+    color="primary"
+    class="icon"
     [class.icon-right]="message?.isBot"
     mat-list-icon>
     {{ !message?.isBot ? 'person' : 'smart_toy' }}
@@ -8,5 +10,5 @@
     <span class="name" [class.name-reverse]="message?.isBot">{{message?.author}}</span>
     <span class="time">{{message?.time | date}}</span>
   </div>
-  <div [class.text-left]="message?.isBot" mat-line>{{ message?.text }}</div>
+  <div class="text" [class.text-bot]="message?.isBot" mat-line>{{ message?.text }}</div>
 </mat-list-item>
