@@ -21,7 +21,6 @@ const credentials = {
 
 // Create a new session
 const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
-const sessionPath = sessionClient.sessionPath(GOOGLE_PROJECT_ID, DIALOG_FLOW_SESSION_ID);
 
 export default class DialogFlowController {
   constructor() {}
@@ -32,7 +31,7 @@ export default class DialogFlowController {
 
     // The text query request.
     const dialogFlowRequest = {
-      session: sessionPath,
+      session: sessionClient.sessionPath(GOOGLE_PROJECT_ID, DIALOG_FLOW_SESSION_ID + request.state.sid),
       queryInput: {
         text: {
           text: text,
@@ -67,7 +66,7 @@ export default class DialogFlowController {
     const { event, parameters = {foo: 'bar'} } = request.payload as any;
 
     const dialogFlowRequest = {
-      session: sessionPath,
+      session: sessionClient.sessionPath(GOOGLE_PROJECT_ID, DIALOG_FLOW_SESSION_ID + request.state.sid),
       queryInput: {
         event: {
           name: event,

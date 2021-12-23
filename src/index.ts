@@ -1,5 +1,6 @@
 import * as Hapi from '@hapi/hapi'
 import * as Joi from 'joi';
+import { v4 as uuidv4 } from 'uuid';
 
 import Logger from './helper/logger';
 import Plugin from "./plugin";
@@ -25,6 +26,23 @@ export async function start(): Promise<Hapi.Server> {
 
   await Plugin.registerAll(server);
   await Router.loadRoutes(server);
+
+  server.state('sid', {
+    ttl: null,
+    isSecure: true,
+    isHttpOnly: true,
+    encoding: 'base64json',
+    clearInvalid: false,
+    strictHeader: true
+  });
+
+  server.ext('onPreHandler', function (request, h) {
+    if (!request.state.sid) {
+      h.state('sid', uuidv4());
+    }
+
+    return h.continue;
+  });
 
   await server.start()
   return server

@@ -19,6 +19,10 @@ export default class DialogFlowRoutes implements IRoute {
             description: 'Method that handles text query.',
             tags: ['api', 'dialog-flow'],
             auth: false,
+            state: {
+              parse: true,
+              failAction: 'error'
+            }
           },
         },
         {
