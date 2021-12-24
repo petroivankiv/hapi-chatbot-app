@@ -1,0 +1,54 @@
+[
+  {
+    "id": "brb",
+    "product": "book",
+    "category": "religious",
+    "name": "Bible",
+    "author": "",
+    "description": "The main book for every person in the planet",
+    "price": 1000,
+    "rate": 5,
+    "available": true,
+    "recommended": true,
+    "sale": 0
+  },
+  {
+    "id": "bfcfs",
+    "product": "book",
+    "category": "for_children",
+    "name": "Fairy stories",
+    "author": "Ivan Franko",
+    "description": "Some very good a useful stories for little children",
+    "price": 100,
+    "rate": 5,
+    "available": true,
+    "recommended": true,
+    "sale": 5
+  },
+  {
+    "id": "bsfac",
+    "product": "book",
+    "category": "science_fiction",
+    "name": "About cosmos",
+    "author": "Elon Mask",
+    "description": "How to take the machines to the cosmos",
+    "price": 200,
+    "rate": 4,
+    "available": true,
+    "recommended": false,
+    "sale": 0
+  },
+  {
+    "id": "bhhu",
+    "product": "book",
+    "category": "historical",
+    "name": "History of Ukraine",
+    "author": "Hrushevskyy",
+    "description": "All you need to know about history of Ukraine",
+    "price": 500,
+    "rate": 5,
+    "available": true,
+    "recommended": true,
+    "sale": 10
+  }
+]

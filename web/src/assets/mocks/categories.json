@@ -1,0 +1,26 @@
+[
+  {
+    "product": "book",
+    "name": "historical",
+    "title": "Historical",
+    "id": "bh"
+  },
+  {
+    "product": "book",
+    "name": "religious",
+    "title": "Religious",
+    "id": "br"
+  },
+  {
+    "product": "book",
+    "name": "for_children",
+    "title": "For children",
+    "id": "bfc"
+  },
+  {
+    "product": "book",
+    "name": "science_fiction",
+    "title": "Science Fiction",
+    "id": "bsf"
+  }
+]

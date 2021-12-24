@@ -1,1 +1,5 @@
-<p>shop works!</p>
+<div>
+  <app-search></app-search>
+  <app-products [products]="products$ | async"></app-products>
+  <app-categories [categories]="categories$ | async"></app-categories>
+</div>
