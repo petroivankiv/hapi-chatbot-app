@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    this.service.getTextQuery('Hi').subscribe();
+    // this.service.getTextQuery('Hi').subscribe();
   }
 
   ngAfterViewChecked() {

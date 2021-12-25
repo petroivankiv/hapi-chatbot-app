@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-card',
@@ -7,11 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomeCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  @Input() card: { title?: string; href?: string; icon?: string } = {};
+  @Input() card: { title?: string; product?: string; icon?: string } = {}
+
+  onNavigate(product?: string) {
+    this.router.navigate(['/shop', { product }]).then();
+  }
 
 }

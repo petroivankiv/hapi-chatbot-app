@@ -5,10 +5,11 @@ export interface Product {
   author: string;
   description: string;
   price: number;
-  rate: number;
-  available: boolean;
-  recommended: boolean;
-  sale: number;
+  rate?: number;
+  available?: boolean;
+  recommended?: boolean;
+  sale?: number;
+  image?: string;
 }
 
 export interface Category {
@@ -16,4 +17,5 @@ export interface Category {
   name: string;
   title: string;
   id: string;
+  image?: string;
 }
