@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ShopService } from './shop.service';
-import { Category, Product } from './shop.type';
+import { Product } from './shop.type';
 
 @Component({
   selector: 'app-shop',
@@ -11,11 +12,12 @@ import { Category, Product } from './shop.type';
 export class ShopComponent implements OnInit {
 
   products$: Observable<Product[]>;
-  categories$: Observable<Category[]>
+  filters: Record<string, string>;
 
-  constructor(private service: ShopService) {
-    this.products$ = service.getProducts();
-    this.categories$ = service.getCategories();
+  constructor(private service: ShopService, private ar: ActivatedRoute) {
+    const filters: Record<string, string> = ar.snapshot.paramMap.keys.reduce((acc, key) => ({ ...acc, [key]: ar.snapshot.paramMap.get(key) }), {});
+    this.filters = filters;
+    this.products$ = service.getProducts(filters);
   }
 
   ngOnInit(): void {

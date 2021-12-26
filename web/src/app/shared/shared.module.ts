@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavButtonComponent } from './nav-button/nav-button.component';
 import { MatButtonModule } from '@angular/material/button';
+import { NoDataComponent } from './no-data/no-data.component';
 
 @NgModule({
   declarations: [
-    NavButtonComponent
+    NavButtonComponent,
+    NoDataComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule
   ],
   exports: [
-    NavButtonComponent
+    NavButtonComponent,
+    NoDataComponent
   ]
 })
 export class SharedModule { }

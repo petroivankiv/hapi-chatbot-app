@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
+import { SharedModule } from '../shared/shared.module';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
@@ -36,6 +37,7 @@ import { RatingComponent } from './rating/rating.component';
     MatIconModule,
     MatTooltipModule,
     MatDividerModule,
+    SharedModule,
     ShopRoutingModule
   ]
 })

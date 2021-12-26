@@ -1,4 +1,8 @@
-<div class="content">
+<div class="content" *ngIf="products$ | async as products ">
   <mat-divider></mat-divider>
-  <app-products [products]="products$ | async"></app-products>
+  <app-products *ngIf="products.length; else noData" [products]="products"></app-products>
+
+  <ng-template #noData>
+    <app-no-data></app-no-data>
+  </ng-template>
 </div>
