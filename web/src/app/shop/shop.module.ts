@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
@@ -26,6 +27,7 @@ import { CategoriesComponent } from './categories/categories.component';
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
+    MatIconModule,
     ShopRoutingModule
   ]
 })

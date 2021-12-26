@@ -1,5 +1,26 @@
 :host {
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    width: 95%;
+    box-sizing: border-box;
+  }
+
+  .recommended-icon {
+    position: absolute;
+    right: 16px;
+    transform: scale(1.3);
+  }
+
   .image {
-    height: 150px;
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .actions {
+    margin: auto 0 0 0;
   }
 }

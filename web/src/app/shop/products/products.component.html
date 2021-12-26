@@ -1,21 +1,15 @@
-<mat-grid-list cols="4" rowHeight="400px">
-  <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [style.background]="tile.color">
-    <mat-card class="example-card">
-      <mat-card-title>Actions Buttons</mat-card-title>
-      <mat-card-subtitle>Start</mat-card-subtitle>
-      <img class="image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+<mat-grid-list cols="4" rowHeight="385px">
+  <mat-grid-tile *ngFor="let product of products">
+    <mat-card class="product-card">
+      <mat-card-title>{{ product?.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product?.product }}</mat-card-subtitle>
+      <mat-icon color="accent" aria-hidden="false" class="recommended-icon" aria-label="Example home icon">recommended</mat-icon>
+      <img class="image" mat-card-image src="assets/images/placeholder.png" alt="Product image">
       <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
+        <p>{{ product?.description }}</p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+      <mat-card-actions class="actions">
+        <button color="primary" mat-button>BUY</button>
       </mat-card-actions>
     </mat-card>
 
