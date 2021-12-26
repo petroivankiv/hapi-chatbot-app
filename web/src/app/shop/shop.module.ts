@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
@@ -34,6 +35,7 @@ import { RatingComponent } from './rating/rating.component';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatDividerModule,
     ShopRoutingModule
   ]
 })

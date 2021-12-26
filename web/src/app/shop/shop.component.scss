@@ -1,7 +1,10 @@
 :host {
   .content {
+    display: flex;
+    flex-direction: column;
     max-width: 1200px;
     padding: 10px;
     margin: auto;
+    gap: 16px;
   }
 }
