@@ -1,0 +1,39 @@
+:host {
+  height: 400px;
+  width: 95%;
+
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+
+    .promotions {
+      display: inline-flex;
+      gap: 16px;
+
+      .product-icon {
+        &.disabled {
+          color: gainsboro;
+        }
+      }
+    }
+  }
+
+  .image {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .actions {
+    margin: auto 0 0 0;
+  }
+
+  .price {
+    padding-top: 5px;
+  }
+
+}

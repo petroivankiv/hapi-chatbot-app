@@ -6,12 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
 import { SearchComponent } from './search/search.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import { CategoriesComponent } from './categories/categories.component';
     ShopComponent,
     SearchComponent,
     ProductsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ProductCardComponent,
+    RatingComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +33,7 @@ import { CategoriesComponent } from './categories/categories.component';
     MatGridListModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
     ShopRoutingModule
   ]
 })

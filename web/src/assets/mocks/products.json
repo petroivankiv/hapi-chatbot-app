@@ -20,9 +20,9 @@
     "author": "Ivan Franko",
     "description": "Some very good a useful stories for little children",
     "price": 100,
-    "rate": 5,
+    "rate": 4,
     "available": true,
-    "recommended": true,
+    "recommended": false,
     "sale": 5
   },
   {
@@ -33,7 +33,7 @@
     "author": "Elon Mask",
     "description": "How to take the machines to the cosmos",
     "price": 200,
-    "rate": 4,
+    "rate": 3,
     "available": true,
     "recommended": false,
     "sale": 0

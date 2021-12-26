@@ -1,17 +1,5 @@
-<mat-grid-list cols="4" rowHeight="385px">
+<mat-grid-list cols="4" rowHeight="405px">
   <mat-grid-tile *ngFor="let product of products">
-    <mat-card class="product-card">
-      <mat-card-title>{{ product?.name }}</mat-card-title>
-      <mat-card-subtitle>{{ product?.product }}</mat-card-subtitle>
-      <mat-icon color="accent" aria-hidden="false" class="recommended-icon" aria-label="Example home icon">recommended</mat-icon>
-      <img class="image" mat-card-image src="assets/images/placeholder.png" alt="Product image">
-      <mat-card-content>
-        <p>{{ product?.description }}</p>
-      </mat-card-content>
-      <mat-card-actions class="actions">
-        <button color="primary" mat-button>BUY</button>
-      </mat-card-actions>
-    </mat-card>
-
+    <app-product-card [product]="product"></app-product-card>
   </mat-grid-tile>
 </mat-grid-list>

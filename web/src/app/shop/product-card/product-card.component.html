@@ -1,0 +1,17 @@
+<mat-card class="product-card">
+  <mat-card-title>{{ product?.name }}</mat-card-title>
+  <mat-card-subtitle>{{ product?.product }}</mat-card-subtitle>
+  <app-rating [rating]="product?.rate"></app-rating>
+  <img class="image" mat-card-image src="assets/images/placeholder.png" alt="Product image">
+  <mat-card-content>
+    <p>{{ product?.description }}</p>
+    <div class="promotions">
+      <mat-icon [class.disabled]="!product?.recommended" [matTooltipDisabled]="!product?.recommended" matTooltip="Recommended" color="accent" aria-hidden="false" class="product-icon" aria-label="Recommended icon">recommended</mat-icon>
+      <mat-icon [class.disabled]="!product?.sale" [matTooltipDisabled]="!product?.sale" matTooltip="Discount is available" color="accent" aria-hidden="false" class="product-icon" aria-label="Discount icon">discount</mat-icon>
+    </div>
+    <h2 class="price">{{ product?.price | currency }}</h2>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button color="primary" mat-button>BUY</button>
+  </mat-card-actions>
+</mat-card>
