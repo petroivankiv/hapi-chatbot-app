@@ -1,5 +1,5 @@
 <div class="content" *ngIf="products$ | async as products ">
-  <app-filter-summary [summary]="filterSummary"></app-filter-summary>
+  <app-filter-summary (remove)="handleRemove($event)" [summary]="filters"></app-filter-summary>
   <mat-divider></mat-divider>
   <app-products *ngIf="products.length; else noData" [products]="products"></app-products>
 

@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class FilterSummaryComponent implements OnInit {
 
-  @Input() summary?: string[];
-  @Output() remove = new EventEmitter<string>();
+  @Input() summary?: Record<string, string>;
+  @Output() remove = new EventEmitter<{ key: string; value: string }>();
 
   constructor() { }
 
