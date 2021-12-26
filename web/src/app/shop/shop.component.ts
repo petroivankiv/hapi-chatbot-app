@@ -20,6 +20,10 @@ export class ShopComponent implements OnInit {
     this.products$ = service.getProducts(filters);
   }
 
+  get filterSummary() {
+    return this.filters ? Object.values(this.filters) : [];
+  }
+
   ngOnInit(): void {
   }
 

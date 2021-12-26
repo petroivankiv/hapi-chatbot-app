@@ -1,0 +1,7 @@
+<mat-chip-list aria-label="Filter summary">
+  <mat-chip *ngFor="let chip of summary" [removable]="true" color="primary" selected (removed)="remove.emit(chip)">{{ chip }}
+    <button matChipRemove>
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-chip>
+</mat-chip-list>

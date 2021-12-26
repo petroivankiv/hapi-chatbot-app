@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { SharedModule } from '../shared/shared.module';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
@@ -17,6 +18,7 @@ import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { RatingComponent } from './rating/rating.component';
+import { FilterSummaryComponent } from './filter-summary/filter-summary.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { RatingComponent } from './rating/rating.component';
     ProductsComponent,
     CategoriesComponent,
     ProductCardComponent,
-    RatingComponent
+    RatingComponent,
+    FilterSummaryComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import { RatingComponent } from './rating/rating.component';
     MatIconModule,
     MatTooltipModule,
     MatDividerModule,
+    MatChipsModule,
     SharedModule,
     ShopRoutingModule
   ]
