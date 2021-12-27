@@ -11,6 +11,9 @@ export interface QueryTextResponse {
         text: string[];
       };
     }[];
+    parameters: {
+      fields: Record<string, { stringValue: string, kind: string}>;
+    };
   }[];
   errors: any[];
   meta: {

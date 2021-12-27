@@ -8,7 +8,7 @@ import { QueryTextResponse } from './types/response.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
   }),
   withCredentials: true
 };
@@ -20,7 +20,8 @@ export class DialogFlowService {
 
   private messagesSub: BehaviorSubject<Message[]> = new BehaviorSubject<Message[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   get messages(): Observable<Message[]> {
     return this.messagesSub.asObservable();
@@ -36,11 +37,24 @@ export class DialogFlowService {
         tap(({ data }) => {
           const messages: Message[] = data[0].fulfillmentMessages.map(msg =>
             ({ text: msg.text.text[0], time: new Date(), isBot: true, author: 'Bot' })
-        );
+          );
 
-        this.messagesSub.next([...this.values, ...messages]);
-      })
-    );
+          const parameters = data[0].parameters.fields;
+          const params = Object.keys(parameters).reduce((acc, param) => {
+            const parameter: { kind: string; [key: string]: string } = parameters[param];
+            const value = parameter[parameter.kind];
+
+            if (!value) {
+              return acc;
+            }
+
+            return { ...acc, [param]: value };
+          }, {});
+          const paramMessage = { time: new Date(), isBot: true, author: 'Bot', params };
+
+          this.messagesSub.next([...this.values, ...messages, paramMessage]);
+        })
+      );
   }
 
   getEventQuery(event: string): Observable<any> {

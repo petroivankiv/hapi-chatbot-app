@@ -10,5 +10,8 @@
     <span class="name" [class.name-reverse]="message?.isBot">{{message?.author}}</span>
     <span class="time">{{message?.time | date}}</span>
   </div>
-  <div class="text" [class.text-bot]="message?.isBot" mat-line>{{ message?.text }}</div>
+  <div class="text" [class.text-bot]="message?.isBot" mat-line>
+    <span *ngIf="message?.text">{{ message?.text }}</span>
+    <button *ngIf="message?.params" (click)="handleOpen(message?.params)" mat-raised-button color="accent">Open</button>
+  </div>
 </mat-list-item>

@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 import { DialogFlowComponent } from './dialog-flow.component';
 import { ChatComponent } from './chat/chat.component';
@@ -28,9 +30,12 @@ import { MessageComponent } from './message/message.component';
     MatListModule,
     MatCardModule,
     MatIconModule,
+    MatButtonModule,
+    RouterModule,
   ],
   exports: [
     DialogFlowComponent
   ]
 })
-export class DialogFlowModule { }
+export class DialogFlowModule {
+}
