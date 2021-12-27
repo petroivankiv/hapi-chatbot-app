@@ -3,4 +3,5 @@ export interface Message {
   time: Date;
   text: string;
   isBot?: boolean;
+  params?: Record<string, string>;
 }
