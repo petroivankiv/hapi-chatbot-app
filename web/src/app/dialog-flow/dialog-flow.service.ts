@@ -3,8 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Message } from './types/message.interface';
+import { Message, ResponseType } from './types/message.interface';
 import { QueryTextResponse } from './types/response.interface';
+
+function getParamValue(parameters: Record<string, { kind: string; [key: string]: string }>, param: string) {
+  const parameter: { kind: string; [key: string]: string } = parameters[param];
+  return parameter[parameter.kind];
+}
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,24 +40,31 @@ export class DialogFlowService {
     return this.http.post<QueryTextResponse>(environment.apiUrl + '/api/text-query', { text }, httpOptions)
       .pipe(
         tap(({ data }) => {
-          const messages: Message[] = data[0].fulfillmentMessages.map(msg =>
-            ({ text: msg.text.text[0], time: new Date(), isBot: true, author: 'Bot' })
-          );
-
           const parameters = data[0].parameters.fields;
-          const params = Object.keys(parameters).reduce((acc, param) => {
-            const parameter: { kind: string; [key: string]: string } = parameters[param];
-            const value = parameter[parameter.kind];
+          const paramKeys = Object.keys(parameters);
+          const payload = data[0].fulfillmentMessages[1]?.payload;
+          const responseType = (getParamValue(payload.fields, 'response_type') || 'text') as ResponseType;
+          const linkRecord: any = getParamValue(payload.fields, 'link');
+
+          const params = paramKeys?.length ? paramKeys.reduce((acc, param) => {
+            const value = getParamValue(parameters, param);
 
             if (!value) {
               return acc;
             }
 
             return { ...acc, [param]: value };
-          }, {});
-          const paramMessage = { time: new Date(), isBot: true, author: 'Bot', params };
+          }, {}) : undefined;
 
-          this.messagesSub.next([...this.values, ...messages, paramMessage]);
+          const link = {
+            label: getParamValue(linkRecord.fields, 'label'),
+            path: getParamValue(linkRecord.fields, 'path'),
+            params
+          };
+
+          const message = { time: new Date(), isBot: true, text: data[0].fulfillmentMessages[0].text.text[0], author: 'Bot', responseType, link };
+
+          this.messagesSub.next([...this.values, message]);
         })
       );
   }

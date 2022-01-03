@@ -17,8 +17,8 @@ export class MessageComponent implements OnInit {
     console.log(this.message);
   }
 
-  handleOpen(params: any) {
-    this.router.navigate(['./shop', params]).then();
+  handleOpen(params: any, path: any) {
+    this.router.navigate([path, params]).then();
   }
 
 }

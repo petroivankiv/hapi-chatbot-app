@@ -39,11 +39,17 @@
     }
   }
 
-  .text {
+  .response {
     background-color: #D6EFFF;
     padding: 6px;
     white-space: pre-wrap;
     border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+
+    .link {
+      margin-top: 7px;
+    }
 
     &.text-bot {
       background-color: #F9F9F9;

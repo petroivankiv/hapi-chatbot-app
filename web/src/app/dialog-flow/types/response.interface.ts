@@ -10,6 +10,7 @@ export interface QueryTextResponse {
       text: {
         text: string[];
       };
+      payload: any;
     }[];
     parameters: {
       fields: Record<string, { stringValue: string, kind: string}>;

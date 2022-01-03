@@ -1,7 +1,18 @@
+export enum ResponseType {
+  Text = 'text',
+  Link = 'link',
+  QuickReplies = 'quick-replies'
+}
+
 export interface Message {
   author: string;
   time: Date;
   text?: string;
   isBot?: boolean;
-  params?: Record<string, string>;
+  responseType?: ResponseType;
+  link?: {
+    params?: Record<string, string>;
+    label: string;
+    path: string;
+  };
 }
