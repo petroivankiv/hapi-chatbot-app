@@ -1,6 +1,7 @@
 export enum ResponseType {
   Text = 'text',
   Link = 'link',
+  Card = 'card',
   QuickReplies = 'quick-replies'
 }
 
@@ -15,4 +16,14 @@ export interface Message {
     label: string;
     path: string;
   };
+  quickReplies?: {
+    label: string;
+    link?: string;
+    decision?: 'no' | 'yes';
+  }[];
+  cards?: {
+    title: string;
+    image?: string;
+    link?: string;
+  }[];
 }

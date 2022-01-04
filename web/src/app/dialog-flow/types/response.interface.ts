@@ -1,3 +1,15 @@
+export interface PayloadField {
+  kind: string;
+  stringValue?: string;
+  structValue?: Payload;
+}
+
+interface Payload {
+  fields: {
+    [key: string]: PayloadField;
+  }
+}
+
 export interface QueryTextResponse {
   data: {
     action: string; // "smalltalk.appraisal.welcome";
@@ -10,7 +22,7 @@ export interface QueryTextResponse {
       text: {
         text: string[];
       };
-      payload: any;
+      payload: Payload;
     }[];
     parameters: {
       fields: Record<string, { stringValue: string, kind: string}>;
