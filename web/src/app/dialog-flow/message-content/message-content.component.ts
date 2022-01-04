@@ -14,7 +14,7 @@ export class MessageContentComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleOpen(params: any, path: any) {
+  handleOpenLink(params: any, path: any) {
     this.router.navigate([path, params]).then();
   }
 }

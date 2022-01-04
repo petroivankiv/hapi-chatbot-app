@@ -10,15 +10,17 @@ export function getParams({ data }: QueryTextResponse) {
   const parameters = data[0].parameters.fields;
   const paramKeys = Object.keys(parameters);
 
-  return paramKeys?.length ? paramKeys.reduce((acc, param) => {
-    const value = getParamValue(parameters, param);
+  return paramKeys?.length
+    ? paramKeys.reduce((acc, param) => {
+        const value = getParamValue(parameters, param);
 
-    if (!value) {
-      return acc;
-    }
+        if (!value) {
+          return acc;
+        }
 
-    return { ...acc, [param]: value };
-  }, {}) : undefined;
+        return { ...acc, [param]: value };
+      }, {})
+    : undefined;
 }
 
 export function getText({ data }: QueryTextResponse): string {
@@ -38,8 +40,28 @@ export function getLinkData(res: QueryTextResponse, responseType: ResponseType) 
   return {
     label: getParamValue(linkRecord.fields, 'label'),
     path: getParamValue(linkRecord.fields, 'path'),
-    params
+    params,
   };
+}
+
+export function getQuickReplies(res: QueryTextResponse, responseType: ResponseType) {
+  const payload = res.data[0].fulfillmentMessages[1]?.payload;
+
+  if (responseType !== ResponseType.QuickReplies) {
+    return undefined;
+  }
+
+  const record: any = getParamValue(payload.fields, 'quick_replies');
+  const text = getParamValue(payload.fields, 'text');
+
+  const options = record.values.map((r: any) => {
+    return {
+      label: getParamValue(r.structValue.fields, 'label'),
+      payload: getParamValue(r.structValue.fields, 'payload'),
+    };
+  });
+
+  return { text, options };
 }
 
 export function getResponseType({ data }: QueryTextResponse): ResponseType {

@@ -2,12 +2,15 @@ export interface PayloadField {
   kind: string;
   stringValue?: string;
   structValue?: Payload;
+  listValue?: {
+    values: PayloadField[];
+  };
 }
 
 interface Payload {
   fields: {
     [key: string]: PayloadField;
-  }
+  };
 }
 
 export interface QueryTextResponse {
@@ -25,13 +28,13 @@ export interface QueryTextResponse {
       payload: Payload;
     }[];
     parameters: {
-      fields: Record<string, { stringValue: string, kind: string}>;
+      fields: Record<string, { stringValue: string; kind: string }>;
     };
   }[];
   errors: any[];
   meta: {
-    method: "POST" | 'GET';
+    method: 'POST' | 'GET';
     operation: string; // "/api/text-query"
-    paging: any
+    paging: any;
   };
 }
