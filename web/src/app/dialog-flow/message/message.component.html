@@ -1,17 +1,7 @@
-<mat-list-item class="message" [class.reverse]="message?.isBot">
-  <mat-icon
-    color="primary"
-    class="icon"
-    [class.icon-right]="message?.isBot"
-    mat-list-icon>
-    {{ !message?.isBot ? 'person' : 'smart_toy' }}
-  </mat-icon>
-  <div mat-line class="name-wrapper" [class.reverse]="message?.isBot">
-    <span class="name" [class.name-reverse]="message?.isBot">{{message?.author}}</span>
-    <span class="time">{{message?.time | date}}</span>
+<div class="message" [class.reverse]="message?.isBot">
+  <app-message-icon [isBot]="message?.isBot"></app-message-icon>
+  <div class="message-content" [class.reverse]="message?.isBot">
+    <app-message-header [message]="message"></app-message-header>
+    <app-message-content [message]="message"></app-message-content>
   </div>
-  <div class="response" [class.text-bot]="message?.isBot" mat-line>
-    <span class="text" *ngIf="message?.text">{{ message?.text }}</span>
-    <button class="link" *ngIf="message?.link" (click)="handleOpen(message?.link?.params, message?.link?.path)" mat-raised-button color="accent">{{ message?.link?.label }}</button>
-  </div>
-</mat-list-item>
+</div>

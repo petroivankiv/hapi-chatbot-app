@@ -14,12 +14,18 @@ import { RouterModule } from '@angular/router';
 import { DialogFlowComponent } from './dialog-flow.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
+import { MessageIconComponent } from './message-icon/message-icon.component';
+import { MessageHeaderComponent } from './message-header/message-header.component';
+import { MessageContentComponent } from './message-content/message-content.component';
 
 @NgModule({
   declarations: [
     DialogFlowComponent,
     ChatComponent,
-    MessageComponent
+    MessageComponent,
+    MessageIconComponent,
+    MessageHeaderComponent,
+    MessageContentComponent
   ],
   imports: [
     BrowserModule,

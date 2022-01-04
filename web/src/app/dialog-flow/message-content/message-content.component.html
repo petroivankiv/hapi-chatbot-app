@@ -1,0 +1,4 @@
+<div class="message-content" [class.text-bot]="message?.isBot">
+  <span class="text" *ngIf="message?.text">{{ message?.text }}</span>
+  <button class="link" *ngIf="message?.link" (click)="handleOpen(message?.link?.params, message?.link?.path)" mat-raised-button color="accent">{{ message?.link?.label }}</button>
+</div>

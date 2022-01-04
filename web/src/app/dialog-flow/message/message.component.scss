@@ -6,55 +6,7 @@
     flex-direction: row-reverse;
   }
 
-  .name-wrapper {
-    display: inline-flex;
-
-    &.reverse {
-      flex-direction: row-reverse;
-    }
-
-    .name {
-      font-size: 14px;
-      font-weight: bold;
-      margin-right: 10px;
-
-      &.name-reverse {
-        align-self: end;
-        margin-right: 0;
-        margin-left: 10px;
-      }
-    }
-
-    .time {
-      font-size: 12px;
-    }
-  }
-
-  .icon {
-    align-self: start;
-
-    &.icon-right {
-      order: 3;
-      margin-left: 15px;
-    }
-  }
-
-  .response {
-    background-color: #D6EFFF;
-    padding: 6px;
-    white-space: pre-wrap;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-
-    .link {
-      margin-top: 7px;
-    }
-
-    &.text-bot {
-      background-color: #F9F9F9;
-      order: 1;
-      align-self: end;
-    }
+  .message-content {
+    padding: 0 10px;
   }
 }

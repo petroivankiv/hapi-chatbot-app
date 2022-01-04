@@ -1,0 +1,4 @@
+<div class="message-header" [class.reverse]="message?.isBot">
+  <span class="name" [class.name-reverse]="message?.isBot">{{message?.author}}</span>
+  <span class="time">{{message?.time | date}}</span>
+</div>

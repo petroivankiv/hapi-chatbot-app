@@ -12,9 +12,9 @@
   </mat-card-title>
   <mat-card-subtitle>Conversation with a Bot</mat-card-subtitle>
   <mat-card-content [class.minimized]="minimized">
-    <mat-list>
+    <div class="messages">
       <app-message *ngFor="let message of messages$ | async" [message]="message"></app-message>
-    </mat-list>
+    </div>
     <mat-form-field class="form-input" appearance="outline">
       <mat-label>Type your question here...</mat-label>
       <input #nameInput (keydown.enter)="onEnter()" id="name" type="text" [formControl]="name" matInput placeholder="Placeholder">

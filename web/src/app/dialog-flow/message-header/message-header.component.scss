@@ -1,0 +1,27 @@
+:host {
+  .message-header {
+    display: inline-flex;
+    margin-bottom: 7px;
+    width: 100%;
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 10px;
+
+      &.name-reverse {
+        align-self: end;
+        margin-right: 0;
+        margin-left: 10px;
+      }
+    }
+
+    .time {
+      font-size: 12px;
+    }
+  }
+}

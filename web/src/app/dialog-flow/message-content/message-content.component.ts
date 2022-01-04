@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Message } from '../types/message.interface';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
+  selector: 'app-message-content',
+  templateUrl: './message-content.component.html',
+  styleUrls: ['./message-content.component.scss'],
 })
-export class MessageComponent implements OnInit {
+export class MessageContentComponent implements OnInit {
   @Input() message?: Message;
 
   constructor(private router: Router) {}
