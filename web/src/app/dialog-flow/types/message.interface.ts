@@ -14,12 +14,12 @@ export interface Message {
   link?: {
     params?: Record<string, string>;
     label: string;
-    path: string;
+    path?: string;
   };
   quickReplies?: {
     label: string;
     link?: string;
-    payload?: 'no' | 'yes';
+    payload?: string;
   }[];
   cards?: {
     title: string;

@@ -46,7 +46,7 @@ export class DialogFlowService {
           responseType,
           link,
         };
-        console.log(message);
+
         this.messagesSub.next([...this.values, message]);
       })
     );
