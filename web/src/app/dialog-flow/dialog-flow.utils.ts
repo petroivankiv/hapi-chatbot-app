@@ -3,7 +3,7 @@ import { PayloadField, QueryTextResponse } from './types/response.interface';
 
 export function getParamValue(parameters: Record<string, PayloadField>, param: string): string {
   const parameter: PayloadField = parameters[param];
-  return parameter[parameter.kind as keyof PayloadField] as string;
+  return parameter ? (parameter[parameter.kind as keyof PayloadField] as string) : '';
 }
 
 export function getParams({ data }: QueryTextResponse) {
