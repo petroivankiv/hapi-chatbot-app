@@ -19,7 +19,13 @@ export class MessageContentComponent implements OnInit {
     this.router.navigate([path, params]).then();
   }
 
-  onQuickReply(text: string) {
-    this.service.getTextQuery(text).subscribe();
+  onQuickReply(text: string, payload?: string) {
+    switch (payload) {
+      case 'recommend_yes':
+        this.service.getEventQuery('SHOW_RECOMMENDATIONS').subscribe();
+        break;
+      default:
+        this.service.getTextQuery(text).subscribe();
+    }
   }
 }

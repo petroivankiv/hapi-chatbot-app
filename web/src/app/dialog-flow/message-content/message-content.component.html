@@ -4,6 +4,7 @@
           mat-raised-button color="accent">{{ message?.link?.label }}</button>
 
   <div class="quick-replies" *ngIf="message?.quickReplies">
-    <button (click)="onQuickReply(option.label)" mat-raised-button color="accent" *ngFor="let option of message?.quickReplies">{{ option?.label }}</button>
+    <button (click)="onQuickReply(option.label, option.payload)" mat-raised-button color="accent"
+            *ngFor="let option of message?.quickReplies">{{ option?.label }}</button>
   </div>
 </div>

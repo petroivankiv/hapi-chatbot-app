@@ -8,7 +8,7 @@ import { Message } from '../types/message.interface';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('nameInput') nameInput?: ElementRef;
@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    // this.service.getTextQuery('Hi').subscribe();
+    this.service.getEventQuery('WELCOME_SHOP').subscribe();
   }
 
   ngAfterViewChecked() {
@@ -39,5 +39,4 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   toggleMinimize() {
     this.minimized = !this.minimized;
   }
-
 }

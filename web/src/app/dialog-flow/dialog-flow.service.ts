@@ -53,7 +53,25 @@ export class DialogFlowService {
   }
 
   getEventQuery(event: string): Observable<any> {
-    return this.http.post<any>(environment.apiUrl + '/api/event-query', { event });
+    return this.http.post<any>(environment.apiUrl + '/api/event-query', { event }).pipe(
+      tap((res) => {
+        const responseType = getResponseType(res);
+        const link = getLinkData(res, responseType);
+        const quickReplies = getQuickReplies(res, responseType);
+
+        const message = {
+          time: new Date(),
+          quickReplies: quickReplies?.options,
+          isBot: true,
+          text: quickReplies?.text || getText(res),
+          author: 'Bot',
+          responseType,
+          link,
+        };
+
+        this.messagesSub.next([...this.values, message]);
+      })
+    );
   }
 
   addMessageFromUser(message: string): void {
