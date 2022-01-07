@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
-import * as  Hapi from '@hapi/hapi';
+import {PrismaClient} from '@prisma/client';
+import * as Hapi from '@hapi/hapi';
 
 declare module '@hapi/hapi' {
   interface ServerApplicationState {
-    prisma: PrismaClient
+    prisma: PrismaClient;
   }
 }
 
@@ -11,19 +11,17 @@ declare module '@hapi/hapi' {
 const prismaPlugin: Hapi.Plugin<null> = {
   name: 'prisma',
   register: async function (server: Hapi.Server) {
-    const prisma = new PrismaClient()
-
-    server.app.prisma = prisma
+    server.app.prisma = new PrismaClient();
 
     // Close DB connection after the server's connection listeners are stopped
     // Related issue: https://github.com/hapijs/hapi/issues/2839
     server.ext({
       type: 'onPostStop',
       method: async (server: Hapi.Server) => {
-        server.app.prisma.$disconnect()
+        server.app.prisma.$disconnect();
       },
-    })
+    });
   },
-}
+};
 
-export default prismaPlugin
+export default prismaPlugin;

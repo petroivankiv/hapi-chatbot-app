@@ -21,8 +21,8 @@ export default class DialogFlowRoutes implements IRoute {
             auth: false,
             state: {
               parse: true,
-              failAction: 'error'
-            }
+              failAction: 'error',
+            },
           },
         },
         {
@@ -32,6 +32,16 @@ export default class DialogFlowRoutes implements IRoute {
             handler: controller.eventQuery,
             validate: validate.eventQuery,
             description: 'Method that handles event query.',
+            tags: ['api', 'dialog-flow'],
+            auth: false,
+          },
+        },
+        {
+          method: 'POST',
+          path: '/api/product-search-fulfillment',
+          options: {
+            handler: controller.productSearchFulfillment,
+            description: 'Method that handles dialogflow fulfilment.',
             tags: ['api', 'dialog-flow'],
             auth: false,
           },

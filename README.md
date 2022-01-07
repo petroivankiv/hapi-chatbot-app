@@ -16,6 +16,11 @@ echo %GOOGLE_APPLICATION_CREDENTIALS%
 - Extract client email and private key
 - Use for google api
 
+### Setup dialog flow fulfillment
+- Enable it in the intent
+- In the fulfillment section add url of the server and a path
+- Add route to the server to handle request from the dialog flow
+
 ### 1. Download example and install dependencies
 
 Download this example:

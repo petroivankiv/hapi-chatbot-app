@@ -12,3 +12,9 @@ model User {
   email String  @unique
   name  String?
 }
+
+model SearchDemand {
+  id       Int     @id @default(autoincrement())
+  product  String  @unique
+  counter  Int
+}
