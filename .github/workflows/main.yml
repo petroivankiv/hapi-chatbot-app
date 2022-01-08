@@ -18,3 +18,15 @@ jobs:
           healthcheck: "https://hapi-chatbot-api.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "angular-chatbot-web" #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          appdir: "web"
+          procfile: "web: npm run start:app"
