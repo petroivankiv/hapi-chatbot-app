@@ -16,10 +16,10 @@ jobs:
           heroku_app_name: "hapi-chatbot-api" #Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           healthcheck: "https://hapi-chatbot-api.herokuapp.com/health"
-          checkstring: "ok"
           rollbackonhealthcheckfailed: true
 
   build-web:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
