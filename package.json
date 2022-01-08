@@ -4,7 +4,7 @@
   "description": "Hapi chat bot example",
   "main": "index.js",
   "engines": {
-    "node": "16.2.0"
+    "node": "16.10.0"
   },
   "scripts": {
     "dev": "ts-node src/index.ts",
