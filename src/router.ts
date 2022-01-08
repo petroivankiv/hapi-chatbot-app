@@ -1,6 +1,5 @@
 import * as Hapi from '@hapi/hapi';
 import * as Inert from '@hapi/inert';
-import * as Path from 'path';
 import Logger from './helper/logger';
 
 export default class Router {
@@ -11,37 +10,24 @@ export default class Router {
 
     server.route({
       method: 'GET',
-      path: '/',
-      handler: function (request, h) {
-        return `Hello ${request.query.name || 'World'}!`;
-      }
-    });
-
-    server.route({
-      method: 'GET',
       path: '/health',
-      handler: function (request, h) {
-        return 'Ok';
-      }
+      handler: () => 'Ok',
     });
 
     server.route({
       method: 'GET',
-      path: '/files/{param*}',
+      path: '/{param*}',
       handler: {
         directory: {
-          path: Path.join(__dirname, 'public'),
-          listing: true
-        }
-      }
+          path: '.',
+        },
+      },
     });
 
     server.route({
       method: '*',
       path: '/{any*}',
-      handler: function (request, h) {
-        return '404 Error! Page Not Found!';
-      }
+      handler: () => '404 Error! Page Not Found!',
     });
 
     Logger.info('Router - Finish adding routes');

@@ -15,3 +15,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "hapi-chatbot-api" #Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: "https://hapi-chatbot-api.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
