@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 
 import { DialogFlowService } from '../dialog-flow.service';
 import { Message } from '../types/message.interface';
@@ -23,7 +23,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    this.service.getEventQuery('WELCOME_SHOP').subscribe();
+    this.service.initialized
+      .pipe(
+        switchMap((res) => {
+          if (!res) {
+            return this.service.getEventQuery('WELCOME_SHOP');
+          }
+
+          return of();
+        })
+      )
+      .subscribe();
   }
 
   ngAfterViewChecked() {
