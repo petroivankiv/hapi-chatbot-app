@@ -52,6 +52,10 @@ export async function start(): Promise<Hapi.Server> {
       h.state('sid', uuidv4());
     }
 
+    // @todo dialogflow fulfilment relies on request.body
+    // @ts-ignore
+    request['body'] = request.payload;
+
     return h.continue;
   });
 

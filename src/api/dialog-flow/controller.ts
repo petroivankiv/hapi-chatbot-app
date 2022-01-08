@@ -28,7 +28,6 @@ export default class DialogFlowController {
   constructor() {}
 
   async textQuery(request: Hapi.Request, h: Hapi.ResponseToolkit) {
-    const {prisma} = request.server.app;
     const {text} = request.payload as any;
 
     // The text query request.
@@ -66,7 +65,6 @@ export default class DialogFlowController {
   }
 
   async eventQuery(request: Hapi.Request, h: Hapi.ResponseToolkit) {
-    const {prisma} = request.server.app;
     const {event, parameters = {foo: 'bar'}} = request.payload as any;
 
     const dialogFlowRequest = {
@@ -96,6 +94,7 @@ export default class DialogFlowController {
     }
   }
 
+  // @todo dialog-flow fulfillment library has an issue so it doesn't work right now
   async productSearchFulfillment(
     request: Hapi.Request,
     h: Hapi.ResponseToolkit
