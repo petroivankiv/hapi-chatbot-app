@@ -21,6 +21,10 @@ echo %GOOGLE_APPLICATION_CREDENTIALS%
 - In the fulfillment section add url of the server and a path
 - Add route to the server to handle request from the dialog flow
 
+### TODO
+- Try to fix fulfillment: package requires body of the request, hapi by default has payload
+- Add build web to the heroku server
+
 ### 1. Download example and install dependencies
 
 Download this example:
