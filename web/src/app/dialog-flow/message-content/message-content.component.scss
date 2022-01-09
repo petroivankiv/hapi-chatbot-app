@@ -18,6 +18,7 @@
     .quick-replies {
       display: inline-flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
       padding: 10px 0;
       gap: 10px;
     }

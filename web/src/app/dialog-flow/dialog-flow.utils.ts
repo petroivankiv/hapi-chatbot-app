@@ -1,4 +1,3 @@
-import { ResponseType } from './types/message.interface';
 import { PayloadField, QueryTextResponse } from './types/response.interface';
 
 export function getParamValue(parameters: Record<string, PayloadField>, param: string): string {
@@ -27,14 +26,14 @@ export function getText({ data }: QueryTextResponse): string {
   return data[0].fulfillmentMessages[0].text.text[0];
 }
 
-export function getLinkData(res: QueryTextResponse, responseType: ResponseType) {
+export function getLinkData(res: QueryTextResponse) {
   const payload = res.data[0].fulfillmentMessages[1]?.payload;
+  const linkRecord: any = payload && getParamValue(payload.fields, 'link');
 
-  if (responseType !== ResponseType.Link) {
+  if (!linkRecord) {
     return undefined;
   }
 
-  const linkRecord: any = getParamValue(payload.fields, 'link');
   const params = getParams(res);
 
   return {
@@ -44,32 +43,20 @@ export function getLinkData(res: QueryTextResponse, responseType: ResponseType) 
   };
 }
 
-export function getQuickReplies(res: QueryTextResponse, responseType: ResponseType) {
+export function getQuickReplies(res: QueryTextResponse) {
   const payload = res.data[0].fulfillmentMessages[1]?.payload;
+  const record: any = payload && getParamValue(payload.fields, 'quick_replies');
 
-  if (responseType !== ResponseType.QuickReplies) {
+  if (!record) {
     return undefined;
   }
 
-  const record: any = getParamValue(payload.fields, 'quick_replies');
-  const text = getParamValue(payload.fields, 'text');
-
-  const options = record.values.map((r: any) => {
+  return record.values.map((r: any) => {
     return {
       label: getParamValue(r.structValue.fields, 'label'),
-      payload: getParamValue(r.structValue.fields, 'payload'),
+      event: getParamValue(r.structValue.fields, 'event'),
+      text: getParamValue(r.structValue.fields, 'text'),
+      link: getParamValue(r.structValue.fields, 'link'),
     };
   });
-
-  return { text, options };
-}
-
-export function getResponseType({ data }: QueryTextResponse): ResponseType {
-  const payload = data[0].fulfillmentMessages[1]?.payload;
-
-  if (!payload) {
-    return ResponseType.Text;
-  }
-
-  return getParamValue(payload.fields, 'response_type') as ResponseType;
 }

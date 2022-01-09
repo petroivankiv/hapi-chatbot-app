@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogFlowService } from '../dialog-flow.service';
-import { Message } from '../types/message.interface';
+import { Message, QuickReply } from '../types/message.interface';
 
 @Component({
   selector: 'app-message-content',
@@ -19,13 +19,13 @@ export class MessageContentComponent implements OnInit {
     this.router.navigate([path, params]).then();
   }
 
-  onQuickReply(text: string, payload?: string) {
-    switch (payload) {
-      case 'recommend_yes':
-        this.service.getEventQuery('SHOW_RECOMMENDATIONS').subscribe();
-        break;
-      default:
-        this.service.getTextQuery(text).subscribe();
+  onQuickReply(option: QuickReply) {
+    if (option.text) {
+      this.service.getTextQuery(option.text).subscribe();
+    }
+
+    if (option.event) {
+      this.service.getEventQuery(option.event).subscribe();
     }
   }
 }

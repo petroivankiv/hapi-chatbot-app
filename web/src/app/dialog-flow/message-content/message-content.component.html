@@ -1,10 +1,14 @@
 <div class="message-content" [class.bot]="message?.isBot">
+  <!--Text node-->
   <span class="text" *ngIf="message?.text">{{ message?.text }}</span>
-  <button class="link" *ngIf="message?.link" (click)="handleOpenLink(message?.link?.params, message?.link?.path)"
-          mat-raised-button color="accent">{{ message?.link?.label }}</button>
 
+  <!--Link node-->
+  <button class="link" *ngIf="message?.link" (click)="handleOpenLink(message?.link?.params, message?.link?.path)"
+          mat-stroked-button color="accent">{{ message?.link?.label }}</button>
+
+  <!--Quick replies node-->
   <div class="quick-replies" *ngIf="message?.quickReplies">
-    <button (click)="onQuickReply(option.label, option.payload)" mat-raised-button color="accent"
+    <button (click)="onQuickReply(option)" mat-stroked-button color="accent"
             *ngFor="let option of message?.quickReplies">{{ option?.label }}</button>
   </div>
 </div>

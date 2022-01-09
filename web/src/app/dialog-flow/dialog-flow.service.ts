@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { getLinkData, getQuickReplies, getResponseType, getText } from './dialog-flow.utils';
+import { getLinkData, getQuickReplies, getText } from './dialog-flow.utils';
 import { Message } from './types/message.interface';
 import { QueryTextResponse } from './types/response.interface';
 
@@ -53,17 +53,16 @@ export class DialogFlowService {
   }
 
   private responseHandler(res: any, messagesSub: BehaviorSubject<Message[]>) {
-    const responseType = getResponseType(res);
-    const link = getLinkData(res, responseType);
-    const quickReplies = getQuickReplies(res, responseType);
+    const link = getLinkData(res);
+    const quickReplies = getQuickReplies(res);
+    const text = getText(res);
 
     const message = {
       time: new Date(),
-      quickReplies: quickReplies?.options,
+      quickReplies,
       isBot: true,
-      text: quickReplies?.text || getText(res),
+      text,
       author: 'Bot',
-      responseType,
       link,
     };
 
